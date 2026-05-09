@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import React, { useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
@@ -13,7 +13,6 @@ import {
   Mail, 
   Phone, 
   MapPin,
-  Scale,
   FileText,
   Users,
   Briefcase,
@@ -44,6 +43,9 @@ const staggerContainer = {
     }
   }
 }
+
+const CV_PATH = "/CV_allison.pdf"
+const CV_FILENAME = "CV_allison.pdf"
 
 const experiences = [
   {
@@ -148,13 +150,15 @@ export default function Portfolio() {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
                 </button>
               ))}
-              <Button 
-                size="sm" 
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Download CV
-              </Button>
+              <a href={CV_PATH} download={CV_FILENAME}>
+                <Button 
+                  size="sm" 
+                  className="bg-primary text-primary-foreground hover:bg-primary/90"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Download CV
+                </Button>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -184,10 +188,12 @@ export default function Portfolio() {
                     {item}
                   </button>
                 ))}
-                <Button size="sm" className="w-fit bg-primary text-primary-foreground">
-                  <Download className="w-4 h-4 mr-2" />
-                  Download CV
-                </Button>
+                <a href={CV_PATH} download={CV_FILENAME} className="w-fit">
+                  <Button size="sm" className="bg-primary text-primary-foreground">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download CV
+                  </Button>
+                </a>
               </div>
             </motion.div>
           )}
@@ -215,10 +221,12 @@ export default function Portfolio() {
                 project finance, and legislative drafting across Malawi and the SADC region.
               </motion.p>
               <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 pt-4">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105">
-                  <Download className="w-5 h-5 mr-2" />
-                  Download CV
-                </Button>
+                <a href={CV_PATH} download={CV_FILENAME}>
+                  <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105">
+                    <Download className="w-5 h-5 mr-2" />
+                    Download CV
+                  </Button>
+                </a>
                 <Button 
                   size="lg" 
                   variant="outline" 
@@ -513,10 +521,12 @@ export default function Portfolio() {
                 background, qualifications, and achievements.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105">
-                  <Download className="w-5 h-5 mr-2" />
-                  Download CV (PDF)
-                </Button>
+                <a href={CV_PATH} download={CV_FILENAME}>
+                  <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105">
+                    <Download className="w-5 h-5 mr-2" />
+                    Download CV (PDF)
+                  </Button>
+                </a>
               </div>
             </motion.div>
           </motion.div>
@@ -568,7 +578,7 @@ export default function Portfolio() {
 
               <motion.div variants={fadeInUp}>
                 <Card className="p-6 bg-card border-border">
-                  <form className="space-y-4">
+                  <div className="space-y-4">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label className="text-sm font-medium text-foreground mb-2 block">Name</label>
@@ -594,10 +604,13 @@ export default function Portfolio() {
                         className="bg-background border-border focus:ring-accent resize-none"
                       />
                     </div>
-                    <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:scale-[1.02]">
+                    <Button 
+                      type="button" 
+                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:scale-[1.02]"
+                    >
                       Send Message
                     </Button>
-                  </form>
+                  </div>
                 </Card>
               </motion.div>
             </div>
